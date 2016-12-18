@@ -3,7 +3,7 @@ System.config({
   transpiler: "-a",
   paths: {
     "app/*": "src/*.js",
-    "users/*": "src/users/*.js",
+    "materialhue/*": "src/materialhue/*.js",
     "material-start/*": "src/*.js",
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"

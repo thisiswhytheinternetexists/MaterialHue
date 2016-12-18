@@ -7,10 +7,11 @@
  * @constructor
  */
 function UsersDataService($q) {
-  alert("Please set hostname + password manually for now in the demo. I'll add auth at another time.");
-   var hostname = "",
-    username = "",
-    api = new HueApi(hostname, username); 
+   var hostname = localStorage.getItem("hue-host"),
+    username = localStorage.getItem("hue-token");
+    if(hostname.length === 0 || username.length === 0)
+      alert("Please set hostname + password manually for now in the demo:\nlocalStorage.setItem(\"hue-host\", \"192.168.x.x\"); localStorage.setItem(\"hue-token\", \"TOKEN_HERE\");");
+    var api = new HueApi(hostname, username); 
 
   // Promise-based API
   return {
@@ -23,7 +24,7 @@ function UsersDataService($q) {
           r.push({
             name: usersList.devices[i].name,
             token: usersList.devices[i].username,
-            avatar: 'svg-1',
+            avatar: 'svg-' + ((Math.floor((Math.random() * 10) + 1) >= 4 ) ? '1' : '4'),
             date_created: new Date(usersList.devices[i].created),
             date_accessed: new Date(usersList.devices[i].accessed)
           });

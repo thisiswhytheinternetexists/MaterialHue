@@ -20,7 +20,7 @@ class UserDetailsController  {
 
     $mdBottomSheet.show({
       parent: angular.element(document. getElementById('content')),
-      templateUrl: 'src/users/components/details/ContactSheet.html',
+      templateUrl: 'src/materialhue/components/details/ContactSheet.html',
       controller: [ '$mdBottomSheet', UserSheetController],
       controllerAs: "$ctrl",
       bindToController : true

@@ -4,7 +4,7 @@ export default {
   name : 'userDetails',
   config : {
     bindings         : {  selected: '<' },
-    templateUrl      : 'src/users/components/details/UserDetails.html',
+    templateUrl      : 'src/materialhue/components/details/UserDetails.html',
     controller       : [ '$mdBottomSheet', '$log', UserDetailsController ]
   }
 };
