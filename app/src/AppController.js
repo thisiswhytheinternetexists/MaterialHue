@@ -41,12 +41,16 @@ function AppController(UsersDataService, LightsDataService, $mdSidenav) {
     $mdSidenav('left').toggle();
   }
 
-  /**
-   * Select the current avatars
-   * @param menuId
-   */
-  function selectUser ( user ) {
-    self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+  function selectItem ( user, light ) {
+    var _item = user || light;
+    if(this.users.indexOf(_item) !== -1) {
+      self.selected = _item;
+    } else if (this.lights.indexOf(_item) !== -1) {
+      self.selected = _item;
+    } else {
+      console.log('unknown item');
+      console.log(_item);
+    }
   }
 }
 
