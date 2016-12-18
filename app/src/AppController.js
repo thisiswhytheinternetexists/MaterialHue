@@ -8,6 +8,8 @@ function AppController(HueDataService, $mdSidenav) {
   var self = this;
 
   self.selected     = null;
+  self.selectedUser = null;
+  self.selectedLight = null;
   self.selectItem   = selectItem;
   self.toggleList   = toggleUsersList;
 
@@ -21,31 +23,28 @@ function AppController(HueDataService, $mdSidenav) {
   HueDataService
         .loadAllUsers()
         .then( function( users ) {
-          self.users    = [].concat(users);
-          self.selected = users[0];
+          self.users = [].concat(users);
         });
 
   HueDataService
         .loadAllLights()
         .then( function( lights ) {
-          self.lights    = [].concat(lights);
-          //self.selected = lights[0];
+          self.lights = [].concat(lights);
         });
 
   HueDataService
         .loadAllScenes()
         .then( function( scenes ) {
-          self.scenes    = [].concat(scenes);
-          //self.selected = scenes[0];
+          self.scenes = [].concat(scenes);
         });
 
   HueDataService
         .loadAllGroups()
         .then( function( groups ) {
-          self.groups    = [].concat(groups);
-          //self.selected = scenes[0];
+          self.groups = [].concat(groups);
         });
-
+  
+  
 
   // *********************************
   // Internal methods
@@ -62,8 +61,10 @@ function AppController(HueDataService, $mdSidenav) {
     var _item = user || light;
     if(this.users.indexOf(_item) !== -1) {
       self.selected = _item;
+      self.selectedUser = _item;
     } else if (this.lights.indexOf(_item) !== -1) {
       self.selected = _item;
+      self.selectedLight = _item;
     } else {
       console.log('unknown item');
       console.log(_item);

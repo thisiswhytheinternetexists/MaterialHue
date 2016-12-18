@@ -42,9 +42,10 @@
     <!-- Container #4 -->
     <md-content flex id="content">
       <!-- Custom UserDetails component -->
-      <user-details
-          selected="app.selected" >
+      <user-details ng-if="app.selectedUser === app.selected" selected="app.selectedUser" >
       </user-details>
+      <light-details ng-if="app.selectedLight === app.selected" selected="app.selectedLight" >
+      </light-details>
     </md-content>
 
   </div>
