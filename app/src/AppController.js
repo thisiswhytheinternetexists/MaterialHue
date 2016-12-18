@@ -5,30 +5,48 @@
  * @param $mdSidenav
  * @constructor
  */
-function AppController(UsersDataService, LightsDataService, $mdSidenav) {
+function AppController(HueDataService, $mdSidenav) {
   var self = this;
 
   self.selected     = null;
-  self.users        = [ ];
   self.selectItem   = selectItem;
   self.toggleList   = toggleUsersList;
+
+  self.users        = [ ];
   self.lights       = [ ];
+  self.scenes       = [ ];
+  self.groups       = [ ];
 
   // Load all registered users
 
-  UsersDataService
+  HueDataService
         .loadAllUsers()
         .then( function( users ) {
           self.users    = [].concat(users);
           self.selected = users[0];
         });
 
-  LightsDataService
+  HueDataService
         .loadAllLights()
         .then( function( lights ) {
           self.lights    = [].concat(lights);
           //self.selected = lights[0];
         });
+
+  HueDataService
+        .loadAllScenes()
+        .then( function( scenes ) {
+          self.scenes    = [].concat(scenes);
+          //self.selected = scenes[0];
+        });
+
+  HueDataService
+        .loadAllGroups()
+        .then( function( groups ) {
+          self.groups    = [].concat(groups);
+          //self.selected = scenes[0];
+        });
+
 
   // *********************************
   // Internal methods
@@ -54,4 +72,4 @@ function AppController(UsersDataService, LightsDataService, $mdSidenav) {
   }
 }
 
-export default [ 'UsersDataService', 'LightsDataService', '$mdSidenav', AppController ];
+export default [ 'HueDataService', '$mdSidenav', AppController ];
