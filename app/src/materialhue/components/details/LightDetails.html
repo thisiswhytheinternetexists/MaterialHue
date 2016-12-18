@@ -1,0 +1,34 @@
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">{{$ctrl.selected.name}}</span>
+      <span class="md-subhead description">{{$ctrl.selected.uniqueid}}</span>
+    </md-card-title-text>
+  </md-card-title>
+</md-card>
+<div layout="column" ng-cloak="" class="md-inline-form">
+  <md-content layout-padding="">
+             <!-- name: lightsList.lights[i].name,
+            type: lightsList.lights[i].type,
+            model: lightsList.lights[i].modelid,
+            manufacturer: lightsList.lights[i].manufacturername,
+            uniqueid: lightsList.lights[i].uniqueid,
+            swversion: lightsList.lights[i].swversion,
+            state: lightsList.lights[i].state.on ? 'on' : 'off'-->
+      <div>
+      <md-input-container>
+        <label>State</label>
+        <md-switch ng-model="$ctrl.selected.state" aria-label="State">
+        </md-switch>
+      </md-input-container>
+      <md-input-container>
+        <label>Name</label>
+        <input ng-model="$ctrl.selected.name">
+      </md-input-container>
+      <md-input-container class="md-block">
+          <label>Unique Id</label>
+          <input ng-model="$ctrl.selected.uniqueid">
+      </md-input-container>
+    </div>
+  </md-content>
+</div>
