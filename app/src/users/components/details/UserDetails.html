@@ -1,0 +1,46 @@
+<md-card>
+  <md-card-title>
+    <md-card-title-media>
+      <div class="md-media-sm card-media" layout>
+        <md-icon md-svg-icon="$ctrl.selected.avatar" style="color:grey"></md-icon>
+      </div>
+    </md-card-title-media>
+    <md-card-title-text>
+      <span class="md-headline">{{$ctrl.selected.name}}</span>
+      <span class="md-subhead description">{{$ctrl.selected.token}}</span>
+    </md-card-title-text>
+  </md-card-title>
+</md-card>
+<div layout="column" ng-cloak="" class="md-inline-form">
+  <md-content layout-padding="">
+      <div>
+      <md-input-container>
+        <label>Name</label>
+        <input ng-model="$ctrl.selected.name">
+      </md-input-container>
+      <md-input-container class="md-block">
+          <label>Token</label>
+          <input ng-model="$ctrl.selected.token">
+      </md-input-container>
+    </div>
+    <div>
+      <form name="userForm">
+        <div layout-gt-xs="row">
+          <md-input-container>
+            <label>Date Created</label>
+            <md-datepicker ng-model="$ctrl.selected.date_created"></md-datepicker>
+          </md-input-container>
+          <md-input-container>
+            <label>Date Accessed</label>
+            <md-datepicker ng-model="$ctrl.selected.date_accessed"></md-datepicker>
+          </md-input-container>
+        </div>
+      </form>
+    </div>
+  </md-content>
+</div>
+
+
+<md-button class="md-fab md-fab-bottom-right" ng-click="$ctrl.share($event)" aria-label="Share">
+  <md-icon md-svg-icon="menu" ></md-icon>
+</md-button>
