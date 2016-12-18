@@ -31,11 +31,12 @@
     <md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')"
                 md-component-id="left" ng-click="app.toggleList()">
       <!-- Custom UsersList component -->
-      <users-list
+      <navitems-list
           users="app.users"
+          lights="app.lights"
           selected="app.selected"
-          on-selected="app.selectUser(user)">
-      </users-list>
+          on-selected="app.selectItem(user, light)">
+      </navitems-list>
     </md-sidenav>
 
     <!-- Container #4 -->

@@ -1,17 +1,18 @@
 /**
  * Main App Controller for the Angular Material Starter App
  * @param UsersDataService
- * @param HueUsersService
+ * @param LightsDataService
  * @param $mdSidenav
  * @constructor
  */
-function AppController(UsersDataService, $mdSidenav) {
+function AppController(UsersDataService, LightsDataService, $mdSidenav) {
   var self = this;
 
   self.selected     = null;
   self.users        = [ ];
-  self.selectUser   = selectUser;
+  self.selectItem   = selectItem;
   self.toggleList   = toggleUsersList;
+  self.lights       = [ ];
 
   // Load all registered users
 
@@ -20,6 +21,13 @@ function AppController(UsersDataService, $mdSidenav) {
         .then( function( users ) {
           self.users    = [].concat(users);
           self.selected = users[0];
+        });
+
+  LightsDataService
+        .loadAllLights()
+        .then( function( lights ) {
+          self.lights    = [].concat(lights);
+          //self.selected = lights[0];
         });
 
   // *********************************
@@ -42,4 +50,4 @@ function AppController(UsersDataService, $mdSidenav) {
   }
 }
 
-export default [ 'UsersDataService', '$mdSidenav', AppController ];
+export default [ 'UsersDataService', 'LightsDataService', '$mdSidenav', AppController ];
