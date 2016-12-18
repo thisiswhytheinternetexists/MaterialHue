@@ -16558,12 +16558,16 @@ if (typeof exports !== "undefined") { // CommonJS module support
 
 },{"./XMLBuilder":187,"lodash/assign":129}],203:[function(require,module,exports){
 (function (global){
-var HueApi = require("node-hue-api").HueApi;
+var _hueApi = require("node-hue-api");
+
 if (typeof global.window.define == 'function' && global.window.define.amd) {
-  global.window.define('HueApi', function () { return HueApi; });
+  global.window.define('HueApi', function () { return _hueApi.HueApi; });
+  global.window.define('lightState', function () { return _hueApi.lightState; });
 } else {
-  global.window.HueApi = HueApi;
+  global.window.HueApi = _hueApi.HueApi;
+  global.window.lightState = _hueApi.lightState;
 }
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"node-hue-api":179}],204:[function(require,module,exports){
 

@@ -65,6 +65,7 @@ function AppController(HueDataService, $mdSidenav) {
     } else if (this.lights.indexOf(_item) !== -1) {
       self.selected = _item;
       self.selectedLight = _item;
+      HueDataService.blinkLight(_item.id);
     } else {
       console.log('unknown item');
       console.log(_item);

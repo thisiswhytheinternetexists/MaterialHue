@@ -36,6 +36,7 @@ function HueDataService($q) {
       api.lights(function(err, lightsList) {
         for(var i = 0; i < lightsList.lights.length; i++) {
           r.push({
+            id: lightsList.lights[i].id,
             name: lightsList.lights[i].name,
             type: lightsList.lights[i].type,
             model: lightsList.lights[i].modelid,
@@ -48,6 +49,9 @@ function HueDataService($q) {
         deferred.resolve(r);
       });
       return deferred.promise;
+    },
+    blinkLight: function(id){
+      api.setLightState(id, lightState.create().shortAlert()).done();
     },
     loadAllScenes: function() {
       var deferred = $q.defer();
