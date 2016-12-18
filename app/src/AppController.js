@@ -1,7 +1,6 @@
 /**
  * Main App Controller for the Angular Material Starter App
- * @param UsersDataService
- * @param LightsDataService
+ * @param HueDataService
  * @param $mdSidenav
  * @constructor
  */

@@ -6,7 +6,7 @@ import 'angular-aria';
 import 'angular-material';
 
 import AppController from 'src/AppController';
-import MaterialHue from 'src/materialhue/Users';
+import MaterialHue from 'src/materialhue/MaterialHue';
 
 export default angular.module( 'starter-app', [ 'ngMaterial', MaterialHue.name ] )
   .config(($mdIconProvider, $mdThemingProvider) => {
@@ -18,7 +18,7 @@ export default angular.module( 'starter-app', [ 'ngMaterial', MaterialHue.name ]
       .icon("phone", "./assets/svg/phone.svg", 24);
 
     $mdThemingProvider.theme('default')
-      .primaryPalette('purple')
+      .primaryPalette('blue')
       .accentPalette('pink');
   })
   .controller('AppController', AppController);
