@@ -17,6 +17,22 @@
             state: lightsList.lights[i].state.on ? 'on' : 'off'-->
       <div>
       <md-input-container>
+        <label>Manufaturer</label>
+        <input ng-model="$ctrl.selected.manufacturer">
+      </md-input-container>        
+      <md-input-container>
+        <label>Model</label>
+        <input ng-model="$ctrl.selected.model">
+      </md-input-container>    
+      <md-input-container>
+        <label>Type</label>
+        <input ng-model="$ctrl.selected.type">
+      </md-input-container>  
+      <md-input-container>
+        <label>Software Version</label>
+        <input ng-model="$ctrl.selected.swversion">
+      </md-input-container>      
+      <md-input-container>
         <label>State</label>
         <md-switch ng-model="$ctrl.selected.state" aria-label="State">
         </md-switch>
@@ -26,7 +42,7 @@
         <input ng-model="$ctrl.selected.name">
       </md-input-container>
       <md-input-container class="md-block">
-          <label>Unique Id</label>
+      <label>Unique Id</label>
           <input ng-model="$ctrl.selected.uniqueid">
       </md-input-container>
     </div>
