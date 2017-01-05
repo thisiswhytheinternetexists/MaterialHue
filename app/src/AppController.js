@@ -1,11 +1,13 @@
 /**
  * Main App Controller for the Angular Material Starter App
+ * @param HueAuthService
  * @param HueDataService
  * @param $mdSidenav
+ * @param $mdDialog
  * @constructor
  */
-function AppController(HueDataService, $mdSidenav) {
-  var self = this;
+function AppController(HueAuthService, HueDataService, $mdSidenav, $mdDialog) {
+    var self = this;
 
   self.selected     = null;
   self.selectedUser = null;
@@ -18,44 +20,95 @@ function AppController(HueDataService, $mdSidenav) {
   self.scenes       = [ ];
   self.groups       = [ ];
 
-  // Load all registered users
+    function startPairing(bridges, ev) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        // Modal dialogs should fully cover application
+        // to prevent interaction outside of dialog
+        if (bridges.length == 1) {
+            var hue = new HueApi();
+            hue.registerUser(bridges[0].ipaddress, "MaterialHue")
+                .then(function(token) {
+                    storeCredentials(token, bridges[0].ipaddress)
+                })
+                .fail(showCouldNotConnect)
+                .done();
+        } else {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .title('No bridges found')
+                .textContent('Please connect to your WiFi network and refresh the page')
+                .ariaLabel('No bridge found')
+                .ok('Oops')
+            );
+        }
+    };
 
-  HueDataService
-        .loadAllUsers()
-        .then( function( users ) {
-          self.users = [].concat(users);
+    function showCouldNotConnect(state) {
+        $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .title('Press to pair')
+            .textContent('Please press the pairing button on your Hue to authenticate this app.')
+            .ariaLabel('Alert press pairing button')
+            .ok('Did it!')
+        ).then(function() {
+            nupnpSearch().then(function(bridges) {
+                startPairing(bridges)
+            }).done();
         });
+    }
 
-  HueDataService
-        .loadAllLights()
-        .then( function( lights ) {
-          self.lights = [].concat(lights);
-        });
+    function storeCredentials(token, ip) {
+        localStorage.setItem('hue-host', ip);
+        localStorage.setItem('hue-token', token);
+        console.log(ip, token);
+    }
 
-  HueDataService
-        .loadAllScenes()
-        .then( function( scenes ) {
-          self.scenes = [].concat(scenes);
-        });
+    // Load all registered users
+    HueAuthService.hasCredentials().then(function(hasCredentials) {
+        if (hasCredentials) {
+            HueDataService
+                .loadAllUsers()
+                .then(function(users) {
+                    self.users = [].concat(users);
+                });
 
-  HueDataService
-        .loadAllGroups()
-        .then( function( groups ) {
-          self.groups = [].concat(groups);
-        });
-  
-  
+            HueDataService
+                .loadAllLights()
+                .then(function(lights) {
+                    self.lights = [].concat(lights);
+                });
 
-  // *********************************
-  // Internal methods
-  // *********************************
+            HueDataService
+                .loadAllScenes()
+                .then(function(scenes) {
+                    self.scenes = [].concat(scenes);
+                });
 
-  /**
-   * Hide or Show the 'left' sideNav area
-   */
-  function toggleUsersList() {
-    $mdSidenav('left').toggle();
-  }
+            HueDataService
+                .loadAllGroups()
+                .then(function(groups) {
+                    self.groups = [].concat(groups);
+                });
+
+        } else {
+            nupnpSearch().then(function(bridges) {
+                startPairing(bridges)
+            }).done();
+        }
+    })
+
+    // *********************************
+    // Internal methods
+    // *********************************
+
+    /**
+     * Hide or Show the 'left' sideNav area
+     */
+    function toggleUsersList() {
+        $mdSidenav('left').toggle();
+    }
 
   function selectItem ( user, light ) {
     var _item = user || light;
@@ -70,7 +123,6 @@ function AppController(HueDataService, $mdSidenav) {
       console.log('unknown item');
       console.log(_item);
     }
-  }
 }
 
-export default [ 'HueDataService', '$mdSidenav', AppController ];
+export default ['HueAuthService', 'HueDataService', '$mdSidenav', '$mdDialog', AppController];

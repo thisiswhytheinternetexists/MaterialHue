@@ -4,12 +4,8 @@
  * @returns {{loadAll: Function}}
  * @constructor
  */
-function HueDataService($q) {
-   var hostname = localStorage.getItem("hue-host"),
-    username = localStorage.getItem("hue-token");
-    if(hostname.length === 0 || username.length === 0)
-      alert("Please set hostname + password manually for now in the demo:\nlocalStorage.setItem(\"hue-host\", \"192.168.x.x\"); localStorage.setItem(\"hue-token\", \"TOKEN_HERE\");");
-    var api = new HueApi(hostname, username); 
+function HueDataService($q) { 
+  var api = new HueApi(localStorage.getItem("hue-host"), localStorage.getItem("hue-token")); 
 
   // Promise-based API
   return {
