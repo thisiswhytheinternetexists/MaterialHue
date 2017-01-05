@@ -1,5 +1,6 @@
 // Load the custom app ES6 modules
 
+import HueAuthService from 'src/materialhue/services/HueAuthService';
 import HueDataService from 'src/materialhue/services/HueDataService';
 
 import NavitemsList from 'src/materialhue/components/list/NavitemsList';
@@ -14,4 +15,5 @@ export default angular
   .component(LightDetails.name, LightDetails.config)
   .component(UserDetails.name, UserDetails.config)
 
+  .service("HueAuthService", HueAuthService)
   .service("HueDataService", HueDataService);
