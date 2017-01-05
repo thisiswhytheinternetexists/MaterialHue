@@ -16563,9 +16563,13 @@ var _hueApi = require("node-hue-api");
 if (typeof global.window.define == 'function' && global.window.define.amd) {
   global.window.define('HueApi', function () { return _hueApi.HueApi; });
   global.window.define('lightState', function () { return _hueApi.lightState; });
+  global.window.define('nupnpSearch', function() { return _hueApi.nupnpSearch; });
+  global.window.define('upnpSearch', function() { return _hueApi.upnpSearch; });
 } else {
   global.window.HueApi = _hueApi.HueApi;
   global.window.lightState = _hueApi.lightState;
+  global.window.nupnpSearch = _hueApi.nupnpSearch;
+  global.window.upnpSearch = _hueApi.upnpSearch;
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
