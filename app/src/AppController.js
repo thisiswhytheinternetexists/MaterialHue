@@ -139,6 +139,6 @@ function AppController(HueAuthService, HueDataService, $mdSidenav, $mdDialog) {
       console.log('unknown item');
       console.log(_item);
     }
-}
+  }
 };
 export default ['HueAuthService', 'HueDataService', '$mdSidenav', '$mdDialog', AppController];
