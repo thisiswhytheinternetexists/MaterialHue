@@ -4,15 +4,16 @@
  * @returns {{loadAll: Function}}
  * @constructor
  */
-function HueDataService($q) { 
-  var api = new HueApi(localStorage.getItem("hue-host"), localStorage.getItem("hue-token")); 
-
-  // Promise-based API
-  return {
-    loadAllUsers: function() {
-      var deferred = $q.defer();
+export default class HueDataService { 
+  constructor($q) {
+    this.api = new HueApi(localStorage.getItem("hue-host"), localStorage.getItem("hue-token")); 
+    this.$q = $q;
+  }
+  
+    loadAllUsers() {
+      var deferred = this.$q.defer();
       var r = [];
-      api.getRegisteredUsers(function(err, usersList) {
+      this.api.getRegisteredUsers(function(err, usersList) {
         for(var i = 0; i < usersList.devices.length; i++) {
           r.push({
             name: usersList.devices[i].name,
@@ -25,11 +26,12 @@ function HueDataService($q) {
         deferred.resolve(r);
       });
       return deferred.promise;
-    },
-    loadAllLights: function() {
-      var deferred = $q.defer();
+    }
+
+    loadAllLights() {
+      var deferred = this.$q.defer();
       var r = [];
-      api.lights(function(err, lightsList) {
+      this.api.lights(function(err, lightsList) {
         for(var i = 0; i < lightsList.lights.length; i++) {
           r.push({
             id: lightsList.lights[i].id,
@@ -45,14 +47,14 @@ function HueDataService($q) {
         deferred.resolve(r);
       });
       return deferred.promise;
-    },
-    blinkLight: function(id){
-      api.setLightState(id, lightState.create().shortAlert()).done();
-    },
-    loadAllScenes: function() {
-      var deferred = $q.defer();
+    }
+    blinkLight(id){
+      this.api.setLightState(id, lightState.create().shortAlert()).done();
+    }
+    loadAllScenes() {
+      var deferred = this.$q.defer();
       var r = [];
-      api.getScenes(function(err, scenesList) {
+      this.api.getScenes(function(err, scenesList) {
         for(var i = 0; i < scenesList.length; i++) {
           r.push({
             name: scenesList[i].name,
@@ -67,11 +69,11 @@ function HueDataService($q) {
         deferred.resolve(r);
       });
       return deferred.promise;
-    },
-    loadAllGroups: function() {
-       var deferred = $q.defer();
+    }
+    loadAllGroups() {
+       var deferred = this.$q.defer();
       var r = [];
-      api.getGroups(function(err, groupsList) {
+      this.api.getGroups(function(err, groupsList) {
         for(var i = 0; i < groupsList.length; i++) {
           r.push({
             name: groupsList[i].name,
@@ -87,6 +89,13 @@ function HueDataService($q) {
       });
       return deferred.promise;
     }
-  };
-}
-export default ['$q', HueDataService];
+    deleteGroup(id) {
+       var deferred = this.$q.defer();
+      var r = false;
+      this.api.deleteGroup(id, function(err, result) {
+        r = result;
+        deferred.resolve(r);
+      });
+      return deferred.promise;
+    }
+};
