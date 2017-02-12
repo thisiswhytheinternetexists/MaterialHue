@@ -26,9 +26,8 @@ export default class HueDataService {
       });
       return deferred.promise;
     }
-    
-    getIconForModel(model_id) {
-      console.log(model_id);  
+
+    getIcon(model_id) { 
         var baseName = "../../../../assets/svg/";
         switch(model_id) {
             case "LLC011":
@@ -42,6 +41,7 @@ export default class HueDataService {
             case "LCT003":
                 return baseName + "gu10" + ".svg";
             case "LST001":
+            case "LST002":
                 return baseName + "lightstrip" + ".svg";
             case "LWB004":
             case "LWB006":
@@ -58,6 +58,7 @@ export default class HueDataService {
     loadAllLights() {
       var deferred = this.$q.defer();
       var r = [];
+      var _iconfn = this.getIcon;
       this.api.lights(function(err, lightsList) {
         for(var i = 0; i < lightsList.lights.length; i++) {
           r.push({
@@ -69,7 +70,7 @@ export default class HueDataService {
             uniqueid: lightsList.lights[i].uniqueid,
             swversion: lightsList.lights[i].swversion,
             state: lightsList.lights[i].state.on,
-            icon: "../../../../assets/svg/" + "other_device" + ".svg"
+            icon: _iconfn(lightsList.lights[i].modelid)
           });
         }
         deferred.resolve(r);
