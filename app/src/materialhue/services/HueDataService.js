@@ -39,7 +39,13 @@ export default class HueDataService {
             case "LCT014":
                 return baseName + "white_and_color_e27_b22" + ".svg";
             case "LCT003":
+            case "LTW013":
+            case "LTW014":
                 return baseName + "gu10" + ".svg";
+            case "LLC020":
+                return baseName + "go" + ".svg";
+            case "LLC010":
+                return baseName + "iris" + ".svg";
             case "LST001":
             case "LST002":
                 return baseName + "lightstrip" + ".svg";
