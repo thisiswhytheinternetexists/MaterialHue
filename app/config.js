@@ -18,6 +18,7 @@ System.config({
     "angular-material": "github:angular/bower-material@master",
     "angular-messages": "github:angular/bower-angular-messages@1.5.8",
     "angular-mocks": "github:angular/bower-angular-mocks@1.5.8",
+    "angular-sanitize": "github:angular/bower-angular-sanitize@1.6.2",
     "css": "github:systemjs/plugin-css@0.1.29",
     "json": "github:systemjs/plugin-json@0.1.2",
     "node-hue-api": "npm:node-hue-api@2.3.0",
@@ -31,6 +32,9 @@ System.config({
       "angular": "github:angular/bower-angular@1.5.8"
     },
     "github:angular/bower-angular-messages@1.5.8": {
+      "angular": "github:angular/bower-angular@1.5.8"
+    },
+    "github:angular/bower-angular-sanitize@1.6.2": {
       "angular": "github:angular/bower-angular@1.5.8"
     },
     "github:angular/bower-material@master": {
