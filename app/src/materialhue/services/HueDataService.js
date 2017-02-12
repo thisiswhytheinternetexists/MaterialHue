@@ -41,6 +41,7 @@ export default class HueDataService {
             case "LCT003":
             case "LTW013":
             case "LTW014":
+            case "RS 122":
                 return baseName + "gu10" + ".svg";
             case "LLC020":
                 return baseName + "go" + ".svg";
