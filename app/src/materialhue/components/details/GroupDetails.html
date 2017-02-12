@@ -11,7 +11,7 @@
         <label>Name</label>
         <input ng-model="$ctrl.selected.name">
       </md-input-container>
-            <md-input-container>
+      <md-input-container>
         <label>Recycle</label>
         <md-switch ng-model="$ctrl.selected.recycle" aria-label="State">
         </md-switch>
@@ -21,11 +21,16 @@
         <md-switch ng-model="$ctrl.selected.state.all_on" aria-label="State">
         </md-switch>
       </md-input-container>
-            <md-input-container>
+      <md-input-container>
         <label>Any active</label>
         <md-switch ng-model="$ctrl.selected.state.any_on" aria-label="State">
         </md-switch>
       </md-input-container>
+      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button ng-click="$ctrl.deleteGroup($ctrl.selected.id)" class="md-icon-button" aria-label="More">
+        <md-icon md-svg-icon="../../../../assets/svg/trash.svg"></md-icon>
+      </md-button>
+    </section>
     </div>
   </md-content>
 </div>
