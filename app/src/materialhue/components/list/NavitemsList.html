@@ -1,33 +1,40 @@
 <!-- NOTE: @see ngClick for how to pass data selection to outside expression -->
-
 <div ng-cloak>
-  <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="users">
-		<md-list>
-		  <md-list-item ng-repeat="user in $ctrl.users">
-		    <md-button ng-click="$ctrl.showDetails({user:user})" ng-class="{'selected' : user === $ctrl.selected }">
-		      <md-icon md-svg-icon="{{user.avatar}}" class="avatar"></md-icon>
-		      {{user.name}}
-		    </md-button>
-		  </md-list-item>
-		</md-list>
-      </md-tab>
-      <md-tab label="lights">
-			<md-list>
-			  <md-list-item ng-repeat="light in $ctrl.lights">
-			    <md-button ng-click="$ctrl.showDetails({light:light})" ng-class="{'selected' : light === $ctrl.selected }">
-			      {{light.name}}
-			    </md-button>
-			  </md-list-item>
-			</md-list>
-      </md-tab>
-            <md-tab label="about">
-        <md-content class="md-padding">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-        </md-content>
-      </md-tab>
-    </md-tabs>
-  </md-content>
+   <md-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+         <md-tab label="users">
+            <md-list>
+               <md-list-item ng-repeat="user in $ctrl.users">
+                  <md-button ng-click="$ctrl.showDetails({user:user})" ng-class="{'selected' : user === $ctrl.selected }">
+                     <md-icon md-svg-icon="{{user.avatar}}" class="avatar"></md-icon>
+                     {{user.name}}
+                  </md-button>
+               </md-list-item>
+            </md-list>
+         </md-tab>
+         <md-tab label="lights">
+            <md-list>
+               <md-list-item ng-repeat="light in $ctrl.lights">
+                  <md-button ng-click="$ctrl.showDetails({light:light})" ng-class="{'selected' : light === $ctrl.selected }">
+                     {{light.name}}
+                  </md-button>
+               </md-list-item>
+            </md-list>
+         </md-tab>
+         <md-tab label="groups">
+            <md-list>
+               <md-list-item ng-repeat="group in $ctrl.groups">
+                  <md-button ng-click="$ctrl.showDetails({group:group})" ng-class="{'selected' : group === $ctrl.selected }">
+                     {{group.name}}
+                  </md-button>
+               </md-list-item>
+            </md-list>
+         </md-tab>
+         <md-tab label="about">
+            <md-content class="md-padding">
+               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+            </md-content>
+         </md-tab>
+      </md-tabs>
+   </md-content>
 </div>
-

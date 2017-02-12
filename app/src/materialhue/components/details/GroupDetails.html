@@ -1,0 +1,31 @@
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">{{$ctrl.selected.name}}</span>
+    </md-card-title-text>
+  </md-card-title>
+</md-card>
+<div layout="column" ng-cloak="" class="md-inline-form">
+  <md-content layout-padding="">
+      <md-input-container>
+        <label>Name</label>
+        <input ng-model="$ctrl.selected.name">
+      </md-input-container>
+            <md-input-container>
+        <label>Recycle</label>
+        <md-switch ng-model="$ctrl.selected.recycle" aria-label="State">
+        </md-switch>
+      </md-input-container>
+      <md-input-container>
+        <label>All active</label>
+        <md-switch ng-model="$ctrl.selected.state.all_on" aria-label="State">
+        </md-switch>
+      </md-input-container>
+            <md-input-container>
+        <label>Any active</label>
+        <md-switch ng-model="$ctrl.selected.state.any_on" aria-label="State">
+        </md-switch>
+      </md-input-container>
+    </div>
+  </md-content>
+</div>

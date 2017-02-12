@@ -76,7 +76,11 @@ function HueDataService($q) {
           r.push({
             name: groupsList[i].name,
             id: groupsList[i].id,
-            type: groupsList[i].type
+            type: groupsList[i].type,
+            recycle: groupsList[i].recycle,
+            lights: groupsList[i].lights,
+            type: groupsList[i].type,
+            state: groupsList[i].state
           });
         }
         deferred.resolve(r);

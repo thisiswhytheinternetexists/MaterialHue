@@ -4,7 +4,7 @@
 export default {
   name : 'navitemsList',
   config : {
-    bindings         : {  users: '<', lights: '<', selected : '<', showDetails : '&onSelected' },
+    bindings         : {  users: '<', lights: '<', groups: '<', selected : '<', showDetails : '&onSelected' },
     templateUrl      : 'src/materialhue/components/list/NavitemsList.html'
   }
 };

@@ -34,8 +34,9 @@
       <navitems-list
           users="app.users"
           lights="app.lights"
+          groups="app.groups"
           selected="app.selected"
-          on-selected="app.selectItem(user, light)">
+          on-selected="app.selectItem(user, light, group)">
       </navitems-list>
     </md-sidenav>
 
@@ -46,6 +47,8 @@
       </user-details>
       <light-details ng-if="app.selectedLight === app.selected" selected="app.selectedLight" >
       </light-details>
+      <group-details ng-if="app.selectedGroup === app.selected" selected="app.selectedGroup">
+      </group-details>
     </md-content>
 
   </div>

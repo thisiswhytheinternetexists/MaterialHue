@@ -12,6 +12,7 @@ function AppController(HueAuthService, HueDataService, $mdSidenav, $mdDialog) {
   self.selected     = null;
   self.selectedUser = null;
   self.selectedLight = null;
+  self.selectedGroup = null;
   self.selectItem   = selectItem;
   self.toggleList   = toggleUsersList;
 
@@ -110,19 +111,34 @@ function AppController(HueAuthService, HueDataService, $mdSidenav, $mdDialog) {
         $mdSidenav('left').toggle();
     }
 
-  function selectItem ( user, light ) {
-    var _item = user || light;
+  function selectLight(light) {
+      self.selected = light;
+      self.selectedLight = light;
+      HueDataService.blinkLight(light.id);
+  }
+
+  function selectUser(user) {
+      self.selected = user;
+      self.selectedUser = user;
+  }
+
+  function selectGroup(group) {
+      self.selected = group;
+      self.selectedGroup = group;
+  }
+
+  function selectItem ( user, light, group ) {
+    var _item = user || light || group;
     if(this.users.indexOf(_item) !== -1) {
-      self.selected = _item;
-      self.selectedUser = _item;
+        selectUser(_item);
     } else if (this.lights.indexOf(_item) !== -1) {
-      self.selected = _item;
-      self.selectedLight = _item;
-      HueDataService.blinkLight(_item.id);
+        selectLight(_item);
+    } else if (this.groups.indexOf(_item) !== -1) {
+        selectGroup(_item);
     } else {
       console.log('unknown item');
       console.log(_item);
     }
 }
-
+};
 export default ['HueAuthService', 'HueDataService', '$mdSidenav', '$mdDialog', AppController];
