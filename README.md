@@ -37,4 +37,3 @@ You will notice a few files/directories within this project:
 ##### Libraries/projects (ab)used to hack this together:
 https://github.com/peter-murray/node-hue-api
 https://github.com/angular/material-start
-All files named noun_hue*.svg: https://thenounproject.com/term/philips-hue-bloom/250895/ Philips Hue icons by by Richard Slater
