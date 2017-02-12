@@ -6,7 +6,7 @@
             <md-list>
                <md-list-item ng-repeat="user in $ctrl.users">
                   <md-button ng-click="$ctrl.showDetails({user:user})" ng-class="{'selected' : user === $ctrl.selected }">
-                     <md-icon md-svg-icon="{{ user.avatar }}" class="avatar"></md-icon>
+                     <md-icon md-svg-icon="{{ user.avatar }}"></md-icon>
                      {{user.name}}
                   </md-button>
                </md-list-item>
@@ -16,7 +16,7 @@
             <md-list>
                <md-list-item ng-repeat="light in $ctrl.lights">
                   <md-button ng-click="$ctrl.showDetails({light:light})" ng-class="{'selected' : light === $ctrl.selected }">
-										<md-icon md-svg-icon="{{ light.icon }}" class="avatar"></md-icon>
+										<md-icon md-svg-icon="{{ light.icon }}"></md-icon>
                      {{light.name}}
                   </md-button>
                </md-list-item>
