@@ -16,6 +16,7 @@
             <md-list>
                <md-list-item ng-repeat="light in $ctrl.lights">
                   <md-button ng-click="$ctrl.showDetails({light:light})" ng-class="{'selected' : light === $ctrl.selected }">
+										<md-icon md-svg-icon="{{ light.icon }}" class="avatar"></md-icon>
                      {{light.name}}
                   </md-button>
                </md-list-item>

@@ -1,5 +1,10 @@
 <md-card>
   <md-card-title>
+      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button class="md-fab" aria-label="Icon">
+            <md-icon md-svg-src="{{$ctrl.selected.icon}}"></md-icon>
+        </md-button>
+      </section>
     <md-card-title-text>
       <span class="md-headline">{{$ctrl.selected.name}}</span>
       <span class="md-subhead description">{{$ctrl.selected.uniqueid}}</span>
