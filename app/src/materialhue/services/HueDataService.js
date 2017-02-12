@@ -1,7 +1,6 @@
 /**
  * Hue DataService
  *
- * @returns {{loadAll: Function}}
  * @constructor
  */
 export default class HueDataService { 
