@@ -26,6 +26,34 @@ export default class HueDataService {
       });
       return deferred.promise;
     }
+    
+    getIconForModel(model_id) {
+      console.log(model_id);  
+        var baseName = "../../../../assets/svg/";
+        switch(model_id) {
+            case "LLC011":
+            case "LLC012":
+                return baseName + "bloom" + ".svg";
+            case "LCT001":
+            case "LCT007":
+            case "LCT010":
+            case "LCT014":
+                return baseName + "white_and_color_e27_b22" + ".svg";
+            case "LCT003":
+                return baseName + "gu10" + ".svg";
+            case "LST001":
+                return baseName + "lightstrip" + ".svg";
+            case "LWB004":
+            case "LWB006":
+            case "LWB007":
+            case "LWB010":
+            case "LWB014":
+                //Hue A19 Lux 
+                return baseName + "white_and_color_e27_b22" + ".svg";
+            default: 
+                return baseName + "other_device" + ".svg";
+        }
+    }
 
     loadAllLights() {
       var deferred = this.$q.defer();
@@ -40,16 +68,19 @@ export default class HueDataService {
             manufacturer: lightsList.lights[i].manufacturername,
             uniqueid: lightsList.lights[i].uniqueid,
             swversion: lightsList.lights[i].swversion,
-            state: lightsList.lights[i].state.on
+            state: lightsList.lights[i].state.on,
+            icon: "../../../../assets/svg/" + "other_device" + ".svg"
           });
         }
         deferred.resolve(r);
       });
       return deferred.promise;
     }
+
     blinkLight(id){
       this.api.setLightState(id, lightState.create().shortAlert()).done();
     }
+
     loadAllScenes() {
       var deferred = this.$q.defer();
       var r = [];
@@ -69,6 +100,7 @@ export default class HueDataService {
       });
       return deferred.promise;
     }
+
     loadAllGroups() {
        var deferred = this.$q.defer();
       var r = [];
@@ -88,6 +120,7 @@ export default class HueDataService {
       });
       return deferred.promise;
     }
+
     deleteGroup(id) {
        var deferred = this.$q.defer();
       var r = false;
