@@ -34,6 +34,11 @@ You will notice a few files/directories within this project:
      all of your dependencies and declares them as Angular modules, and configures the icons and
      theming for the application.
 
+###### Docker
+Of course you can run a docker image on your own machine:
+`docker run -p 8080:8080 --name materialhue -d djflix/materialhue:latest`
+
+
 ##### Libraries/projects (ab)used to hack this together:
 https://github.com/peter-murray/node-hue-api
 https://github.com/angular/material-start
