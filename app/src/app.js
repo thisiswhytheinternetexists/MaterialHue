@@ -5,10 +5,13 @@ import 'angular-animate';
 import 'angular-aria';
 import 'angular-material';
 
+import 'tinycolor'
+import 'md-color-picker'
+
 import AppController from 'src/AppController';
 import MaterialHue from 'src/materialhue/MaterialHue';
 
-export default angular.module( 'starter-app', [ 'ngMaterial', MaterialHue.name ] )
+export default angular.module( 'material-hue', [ 'ngMaterial', MaterialHue.name ] )
   .config(($mdIconProvider, $mdThemingProvider) => {
     // Register the user `avatar` icons
     $mdIconProvider

@@ -10,11 +10,11 @@ angular
   .element( document )
   .ready( function() {
     angular
-      .module( 'starter-app-bootstrap', [ App.name ] )
+      .module( 'material-hue-webapp', [ App.name ] )
       .run(()=>{
-        console.log(`Running the 'starter-app-bootstrap' ES6 Material-Start Tutorial`);
+        console.log(`Running the 'material-hue-webapp'`);
       });
 
     let body = document.getElementsByTagName("body")[0];
-    angular.bootstrap( body, [ 'starter-app-bootstrap' ]);
+    angular.bootstrap( body, [ 'material-hue-webapp' ]);
   });
