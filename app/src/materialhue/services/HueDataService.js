@@ -28,6 +28,7 @@ export default class HueDataService {
     }
 
     getIcon(model_id) { 
+        /* Note: everything *NOT* made by Philips has a comment to indicate it's actual manufacturer */
         var baseName = "../../../../assets/svg/";
         switch(model_id) {
             case "LLC011":
@@ -41,7 +42,8 @@ export default class HueDataService {
             case "LCT003":
             case "LTW013":
             case "LTW014":
-            case "RS 122":
+            case "RS 122": //INNR
+            case "RS 125": //INNR
                 return baseName + "gu10" + ".svg";
             case "LLC020":
                 return baseName + "go" + ".svg";
@@ -54,13 +56,28 @@ export default class HueDataService {
             case "LWB006":
             case "LWB007":
             case "LWB010":
-            case "LWB014":
+            case "LWB014": 
+            case "FL 110": //INNR
+            case "ST 110": //INNR
+            case "UC 110": //INNR
                 //Hue A19 Lux 
                 return baseName + "white_and_color_e27_b22" + ".svg";
+            case "PL 110": //INNR
+                return baseName + "ceiling_round" + ".svg";
+            case "Classic A60 W clear - LIGHTIFY": //OSRAM
+            case "Classic A60 W clear": //OSRAM
+            case "Classic A60 TW": //OSRAM
+            case "PAR16 50 TW": //OSRAM
+            case "Classic B40 TW - LIGHTIFY": //OSRAM
+            case "RB 162": //INNR
+            case "RB 165": //INNR
+            case "RB 185C": //INNR
+                return baseName + "white_e27_b22" + ".svg"
             default: 
                 return baseName + "other_device" + ".svg";
         }
     }
+
 
     loadAllLights() {
       var deferred = this.$q.defer();
@@ -68,6 +85,7 @@ export default class HueDataService {
       var _iconfn = this.getIcon;
       this.api.lights(function(err, lightsList) {
         for(var i = 0; i < lightsList.lights.length; i++) {
+          console.log(lightsList.lights[i]);
           r.push({
             id: lightsList.lights[i].id,
             name: lightsList.lights[i].name,
@@ -124,16 +142,6 @@ export default class HueDataService {
             state: groupsList[i].state
           });
         }
-        deferred.resolve(r);
-      });
-      return deferred.promise;
-    }
-
-    deleteGroup(id) {
-       var deferred = this.$q.defer();
-      var r = false;
-      this.api.deleteGroup(id, function(err, result) {
-        r = result;
         deferred.resolve(r);
       });
       return deferred.promise;
