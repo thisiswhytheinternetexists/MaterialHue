@@ -6,13 +6,16 @@
 export default class HueAuthService {
   constructor($q) {
     this.$q = $q;
-  }
-    hasCredentials() {
-      var hostname = localStorage.getItem("hue-host"),
-          username = localStorage.getItem("hue-token");
-      var deferred = this.$q.defer();
-      var r = !(!hostname || hostname.length === 0 || !username || username.length === 0);
-      deferred.resolve(r);
-      return deferred.promise;
-    }
+    this.checkCredentialsPresentInLocalStorage = function() {
+      return this.$q(function(resolve, reject) {
+        var hostname = localStorage.getItem("hue-host");
+        var username = localStorage.getItem("hue-token");
+        if(!(!hostname || hostname.length === 0 || !username || username.length === 0)) {
+          resolve({ username: username, hostname: hostname });
+        } else {
+          reject("Credentials are missing");
+        }
+      })
+    };
+  }  
 }

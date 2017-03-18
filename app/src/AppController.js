@@ -66,39 +66,37 @@ function AppController(HueAuthService, HueDataService, $mdSidenav, $mdDialog) {
         console.log(ip, token);
     }
 
-    // Load all registered users
-    HueAuthService.hasCredentials().then(function(hasCredentials) {
-        if (hasCredentials) {
-            HueDataService
-                .loadAllUsers()
-                .then(function(users) {
-                    self.users = [].concat(users);
-                });
+    HueAuthService.checkCredentialsPresentInLocalStorage().then(function(greeting) {
+        HueDataService
+            .loadAllUsers()
+            .then(function(users) {
+                self.users = [].concat(users);
+            });
 
-            HueDataService
-                .loadAllLights()
-                .then(function(lights) {
-                    self.lights = [].concat(lights);
-                });
+        HueDataService
+            .loadAllLights()
+            .then(function(lights) {
+                self.lights = [].concat(lights);
+            });
 
-            HueDataService
-                .loadAllScenes()
-                .then(function(scenes) {
-                    self.scenes = [].concat(scenes);
-                });
+        HueDataService
+            .loadAllScenes()
+            .then(function(scenes) {
+                self.scenes = [].concat(scenes);
+            });
 
-            HueDataService
-                .loadAllGroups()
-                .then(function(groups) {
-                    self.groups = [].concat(groups);
-                });
+        HueDataService
+            .loadAllGroups()
+            .then(function(groups) {
+                self.groups = [].concat(groups);
+            });
 
-        } else {
-            nupnpSearch().then(function(bridges) {
-                startPairing(bridges)
-            }).done();
-        }
-    })
+    }, function(reason) {
+        alert('Failed: ' + reason);
+        nupnpSearch().then(function(bridges) {
+            startPairing(bridges)
+        }).done();
+    });
 
     // *********************************
     // Internal methods
