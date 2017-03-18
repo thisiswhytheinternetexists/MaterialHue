@@ -36,6 +36,11 @@
           </md-input-container>
         </div>
       </form>
+      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button ng-click="$ctrl.deleteUser($ctrl.selected.token)" class="md-icon-button" aria-label="More">
+          <md-icon md-svg-icon="../../../../assets/svg/trash.svg"></md-icon>
+        </md-button>
+      </section>
     </div>
   </md-content>
 </div>
