@@ -5,8 +5,8 @@ import 'angular-animate';
 import 'angular-aria';
 import 'angular-material';
 
-import 'tinycolor'
-import 'md-color-picker'
+//import 'tinycolor'
+//import 'md-color-picker'
 
 import AppController from 'src/AppController';
 import MaterialHue from 'src/materialhue/MaterialHue';
