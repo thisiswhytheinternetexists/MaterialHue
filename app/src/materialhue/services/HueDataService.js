@@ -1,3 +1,4 @@
+import 'hue-node-api-browserified'
 /**
  * Hue DataService
  *
