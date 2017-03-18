@@ -92,7 +92,6 @@ function AppController(HueAuthService, HueDataService, $mdSidenav, $mdDialog) {
             });
 
     }, function(reason) {
-        alert('Failed: ' + reason);
         nupnpSearch().then(function(bridges) {
             startPairing(bridges)
         }).done();
