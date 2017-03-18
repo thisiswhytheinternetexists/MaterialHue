@@ -113,6 +113,9 @@ function AppController(HueAuthService, HueDataService, $mdSidenav, $mdDialog) {
       self.selected = light;
       self.selectedLight = light;
       HueDataService.blinkLight(light.id);
+      HueDataService.lightStatusWithRGB(light.id).then(function(response) {
+        self.selectedLight.state = response;
+      });
   }
 
   function selectUser(user) {
