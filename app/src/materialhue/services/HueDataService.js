@@ -86,7 +86,6 @@ export default class HueDataService {
       var _iconfn = this.getIcon;
       this.api.lights(function(err, lightsList) {
         for(var i = 0; i < lightsList.lights.length; i++) {
-          console.log(lightsList.lights[i]);
           r.push({
             id: lightsList.lights[i].id,
             name: lightsList.lights[i].name,
@@ -106,6 +105,17 @@ export default class HueDataService {
 
     blinkLight(id){
       this.api.setLightState(id, lightState.create().shortAlert()).done();
+    }
+
+    lightStatusWithRGB(id) {
+      var deferred = this.$q.defer();
+      var state = {};
+      this.api.getLightStatusWithRGB(id).then(function(result) {
+        state = result.state;
+        console.log(state);
+      })
+      deferred.resolve(state);
+      return deferred.promise;
     }
 
     loadAllScenes() {
