@@ -15,6 +15,13 @@ System.config({
     "npm:*": "jspm_packages/npm/*"
   },
 
+  meta: {
+    "hue-node-api-browserified.js": {
+      "format": "global",
+      "exports": "HueApi"
+    },
+  },
+
   map: {
     "-a": "npm:babel-core@5.8.38",
     "-a-runtime": "npm:babel-runtime@5.8.38",
