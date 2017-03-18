@@ -94,7 +94,7 @@ export default class HueDataService {
             manufacturer: lightsList.lights[i].manufacturername,
             uniqueid: lightsList.lights[i].uniqueid,
             swversion: lightsList.lights[i].swversion,
-            state: lightsList.lights[i].state.on,
+            state: lightsList.lights[i].state,
             icon: _iconfn(lightsList.lights[i].modelid)
           });
         }

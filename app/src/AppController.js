@@ -114,7 +114,12 @@ function AppController(HueAuthService, HueDataService, $mdSidenav, $mdDialog) {
       self.selectedLight = light;
       HueDataService.blinkLight(light.id);
       HueDataService.lightStatusWithRGB(light.id).then(function(response) {
-        self.selectedLight.state = response;
+          if(typeof(response.rgb) === 'undefined') {
+              console.log("No color on this one!")
+          } else {
+              console.log("YAY COLOR");
+              self.selectedLight.state = response;
+          }
       });
   }
 
